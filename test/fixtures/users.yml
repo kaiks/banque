@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: 
+  name: 
+  surname: 
+  birth_date: 
+  city: 
+  income_bracket: 1
+  password: MyText
+
+two:
+  title: 
+  name: 
+  surname: 
+  birth_date: 
+  city: 
+  income_bracket: 1
+  password: MyText
