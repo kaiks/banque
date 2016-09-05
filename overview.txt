@@ -1,0 +1,54 @@
+Question:
+	How to identify a client?
+		Proposed solution: use ID
+		
+	
+
+Bank tables:
+							Length		Not null		Unique			FK
+	User:
+		Title				4			Y				N
+		Name				40			Y				N
+		Surname				80			Y				N
+		Birth date						Y				N
+		City				100			Y				N
+		Income bracket		[fix]		Y				N				Income bracket
+		Password			100			Y				N
+		Country				2			Y				N
+		
+	Account: belongs to User
+		Owner				INT			Y				Y				User
+		Bank code			INT5		Y				N
+		Sort code			INT5		Y				N
+		RIB key				INT2		N				N
+		Number (account)	FIXED11		Y				Y
+		Status				INT1		Y				N
+		
+	Transaction:	belongs_to account
+		Status				INT1		Y				N				Transaction status
+		Account				INT			Y				N				Account
+		Type				INT1		Y				N				Transaction type
+		Accepted by			INT			N				N
+		
+	Admin:
+		Username			20			Y				Y
+		Name				40			Y				N
+		Surname				80			Y				N
+		Password			100			Y				N
+		
+	Transaction status:
+		ID					INT1
+		Text							Y				Y
+		
+	Transaction type:
+		ID					INT1		Y				Y
+		Text							Y				Y
+		
+	Account status:
+		ID					INT1
+		Text							Y				Y
+
+	Income bracket:
+		Min
+		Max
+			With checks: no two brackets should intersect
