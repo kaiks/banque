@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  let(:bracket)     { FactoryGirl.build :income_bracket }
-  let(:user)        { FactoryGirl.build :user, income_bracket: bracket }
-  let(:account)     { FactoryGirl.build :account, user: user }
-  let(:transaction) { FactoryGirl.build :transaction, account: account }
+  let(:bracket)     { FactoryGirl.create :income_bracket }
+  let(:user)        { FactoryGirl.create :user, income_bracket: bracket }
+  let(:account)     { FactoryGirl.create :account, user: user }
+  let(:transaction) { FactoryGirl.create :transaction, account: account }
 
   context 'when accepted' do
     it 'must have administrator' do
@@ -12,7 +12,6 @@ RSpec.describe Transaction, type: :model do
     end
 
     it 'must have date' do
-      transaction
       expect{transaction.accepted!}.to raise_error ActiveRecord::RecordInvalid
     end
   end

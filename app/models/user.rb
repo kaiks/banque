@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   }
 
   validates :password, format: {
-      with: /\A[[:alpha:]\-\s]+\z/,
+      with: /\A[[:alnum:]\-\s]{6,100}\z/,
       message: "Le nom de passe n'est pas vailde."
   }
 
