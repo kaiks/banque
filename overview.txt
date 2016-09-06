@@ -28,7 +28,8 @@ Bank tables:
 		Status				INT1		Y				N
 		Account				INT			Y				N				Account
 		Type				INT1		Y				N
-		Accepted by			INT			N				N
+		Managed by			INT			N				N
+		Managed at						N				N
 		
 	Admin:
 		Username			20			Y				Y
