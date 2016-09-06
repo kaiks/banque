@@ -1,11 +1,8 @@
 require 'rails_helper'
+require_relative '../shared_stuff.rb'
 
 RSpec.describe Transaction, type: :model do
-  let(:bracket)     { FactoryGirl.create :income_bracket }
-  let(:user)        { FactoryGirl.create :user, income_bracket: bracket }
-  let(:account)     { FactoryGirl.create :account, user: user }
-  let(:transaction) { FactoryGirl.create :transaction, account: account }
-  let(:admin)       { FactoryGirl.create :admin}
+  include_context 'shared stuff'
 
   context 'when accepted' do
     it 'must have administrator' do

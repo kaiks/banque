@@ -15,9 +15,9 @@ FactoryGirl.define do
   end
 
   factory :account do
-    bank_code 12345
-    sort_code 67890
-    rib   44
+    bank_code 1
+    sort_code 678
+    rib_key   44
     number 'A1B2C3D4E50'
   end
 

@@ -10,5 +10,12 @@ class Account < ActiveRecord::Base
       message: "Numéro de compte doit comporter 11 caractères (lettres/chiffres)."
   }
 
+  def rib
+    rib = ''
+    rib += bank_code.to_s.rjust(5, '0')
+    rib += sort_code.to_s.rjust(5, '0')
+    rib += number
+    rib += rib_key.to_s.rjust(2, '0')
+  end
 
 end
