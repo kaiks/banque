@@ -1,6 +1,9 @@
 #todo: figure out a primary key
 #todo: check date format and do validation if necessary
 class User < ActiveRecord::Base
+  has_many :accounts
+  belongs_to :income_bracket
+
   validates :name, format: {
       with: /^[[:alpha:]]+$/,
       message: "Prénom doit comporter que des lettres."

@@ -25,9 +25,9 @@ Bank tables:
 		Status				INT1		Y				N
 		
 	Transaction:	belongs_to account
-		Status				INT1		Y				N				Transaction status
+		Status				INT1		Y				N
 		Account				INT			Y				N				Account
-		Type				INT1		Y				N				Transaction type
+		Type				INT1		Y				N
 		Accepted by			INT			N				N
 		
 	Admin:
@@ -36,18 +36,6 @@ Bank tables:
 		Surname				80			Y				N
 		Password			100			Y				N
 		
-	Transaction status:
-		ID					INT1
-		Text							Y				Y
-		
-	Transaction type:
-		ID					INT1		Y				Y
-		Text							Y				Y
-		
-	Account status:
-		ID					INT1
-		Text							Y				Y
-
 	Income bracket:
 		Min
 		Max
