@@ -11,7 +11,8 @@ class Admin < ActiveRecord::Base
   validates :surname, format: {
       with: /\A[[:alpha:]]+\z/,
       message: "Nom doit comporter que des lettres."
-  }
+  }, allow_blank: true
+
   validates :password, format: {
       with: /\A[[:alnum:]\-\s]{6,100}\z/,
       message: "Le nom de passe n'est pas vailde."
