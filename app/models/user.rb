@@ -5,15 +5,15 @@ class User < ActiveRecord::Base
   belongs_to :income_bracket
 
   validates :name, format: {
-      with: /^[[:alpha:]]+$/,
+      with: /\A[[:alpha:]]+\z/,
       message: "Prénom doit comporter que des lettres."
   }
   validates :surname, format: {
-      with: /^[[:alpha:]]+$/,
+      with: /\A[[:alpha:]]+\z/,
       message: "Nom doit comporter que des lettres."
   }
   validates :city, format: {
-      with: /^[[:alpha:]\-\s]+[[:alpha:]]$/,
+      with: /\A[[:alpha:]\-\s]+[[:alpha:]]\z/,
       message: "Le nom de ville n'est pas vailde."
   }
 
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   }
 
   validates :password, format: {
-      with: /^[[:alpha:]\-\s]+$/,
+      with: /\A[[:alpha:]\-\s]+\z/,
       message: "Le nom de passe n'est pas vailde."
   }
 
