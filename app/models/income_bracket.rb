@@ -1,9 +1,3 @@
-class IntersectionValidator < ActiveModel::Validator
-  def validate(record)
-
-  end
-end
-
 class IncomeBracket < ActiveRecord::Base
   has_many :users
   validate :does_not_intersect
