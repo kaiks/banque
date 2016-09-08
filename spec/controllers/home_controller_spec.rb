@@ -7,6 +7,14 @@ RSpec.describe HomeController, type: :controller do
       get :index
       expect(response).to have_http_status(:success)
     end
+
+    context 'when not logged in' do
+
+    end
+
+    context 'when logged in' do
+      it 'redirects to #dashboard'
+    end
   end
 
 end
