@@ -1,17 +1,17 @@
 FactoryGirl.define do
+  factory :income_bracket do
+    min 0
+    max 999
+  end
+
   factory :user do
     name 'Jacques'
     surname  'Dupont'
+    income_bracket
     birth_date Date.new(1990,01,01)
     city 'Paris'
     title 'Mr'
     password 'abc123456'
-  end
-
-  # This will use the User class (Admin would have been guessed)
-  factory :income_bracket do
-    min 0
-    max 999
   end
 
   factory :account do

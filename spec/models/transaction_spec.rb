@@ -8,6 +8,21 @@ RSpec.describe Transaction, type: :model do
     expect(transaction).to be_valid
   end
 
+  it 'cant have undefined amount' do
+    transaction.amount = nil
+    expect(transaction).to be_invalid
+  end
+
+  it 'must belong to an account' do
+    transaction.account = nil
+    expect(transaction).to be_invalid
+  end
+
+  it 'must belong to a valid account' do
+    transaction.account_id = 432432
+    expect(transaction).to be_invalid
+  end
+
   it 'must have positive amount' do
     transaction.amount = -3
     expect(transaction).to be_invalid

@@ -3,6 +3,8 @@
 class User < ActiveRecord::Base
   has_many :accounts
   belongs_to :income_bracket
+  validates :income_bracket,  presence: true
+  validates :birth_date,      presence: true
 
   validates :name, format: {
       with: /\A[[:alpha:]]+\z/,
@@ -26,4 +28,13 @@ class User < ActiveRecord::Base
       message: "Le nom de passe n'est pas vailde."
   }
 
+  validates :country_code, length: { is: 2 }
+
+  def full_name
+    name + ' ' + surname
+  end
+
+  def name_with_title
+    title + ' ' + name + ' ' + surname
+  end
 end

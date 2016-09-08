@@ -8,6 +8,7 @@ class Transaction < ActiveRecord::Base
     :message => 'Le montant de la transaction doit excéder 0.'}
   validate :must_be_rounded
   validates :managed_by, presence: true, unless: 'managed_at.nil?'
+  validates :account, presence: true
 
   with_options if: :accepted? do |transaction|
     transaction.validates :managed_by, presence: true
@@ -19,8 +20,10 @@ class Transaction < ActiveRecord::Base
     (100*amount).floor == amount*100
   end
 
+
+
   private
   def must_be_rounded
-    errors.add :base, 'Le montant doit être un multiple de 0.01' unless rounded?
+    errors.add :base, 'Le montant doit être un multiple de 0.01' unless amount.nil? or rounded?
   end
 end
