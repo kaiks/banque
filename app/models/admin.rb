@@ -1,5 +1,5 @@
 class Admin < ActiveRecord::Base
-  has_many :transactions, foreign_key: :managed_by
+  has_many :transactions
   validates :username, format: {
       with: /\A[[:alpha:]]+\z/,
       message: "Nom d'utilisateur doit comporter que des lettres."

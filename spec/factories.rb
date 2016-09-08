@@ -21,13 +21,22 @@ FactoryGirl.define do
     number 'A1B2C3D4E50'
   end
 
-  factory :transaction do
-    amount 100
-  end
-
   factory :admin do
     username 'admin'
     name 'Superuser'
     password 'admin123'
   end
+
+  factory :transaction do
+    account
+    amount 100
+
+    factory :accepted_transaction do
+      admin
+      managed_at DateTime.now
+      status :accepted
+    end
+  end
+
+
 end
