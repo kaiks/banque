@@ -1,5 +1,11 @@
 <h1>New User</h1>
 
-<%= render 'form' %>
+<%#= render 'form' %>
+<%= bootstrap_form_for(@user) do |f| %>
+    <%= f.number_field :id %>
+    <%= f.password_field :password %>
+    <%#= f.check_box :remember_me %>
+    <%= f.submit "Log In" %>
+<% end %>
 
 <%= link_to 'Back', users_path %>
