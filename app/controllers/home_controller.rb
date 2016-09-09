@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     attempt_login
-    @user ||= User.new
+    @current_user ||= User.new
   end
 
   def dashboard
@@ -12,13 +12,5 @@ class HomeController < ApplicationController
     redirect_to action: 'dashboard' if login_success?
   end
 
-  private
-  def login_success?
-    if session.fetch(:user_id, 0) > 0
-      @user ||= User.find(session[:user_id])
-      true
-    else
-      false
-    end
-  end
+
 end

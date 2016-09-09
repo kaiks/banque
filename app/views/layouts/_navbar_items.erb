@@ -1,0 +1,16 @@
+<% if session[:user_id] %>
+  <li class="<%= 'active' if current_page?(root_path) %>">
+    <%= link_to 'Home', root_path %>
+  </li>
+  <li class="<%= 'active' if current_page?(controller: 'accounts') %>">
+    <%= link_to 'Accounts', '#' %>
+  </li>
+  <li class="<%= 'active' if current_page?(controller: 'transactions') %>">
+    <%= link_to 'Transactions', '#' %>
+  </li>
+  <li> <%= link_to('Log out', logout_path) %> </li>
+<% else %>
+    <li class="active">
+      <%= link_to 'Home', root_path %>
+    </li>
+<% end %>

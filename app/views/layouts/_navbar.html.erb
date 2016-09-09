@@ -11,9 +11,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Accounts', '#' %></li>
-        <li><%= link_to 'Transactions', '#' %></li>
+        <%= render 'layouts/navbar_items' %>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

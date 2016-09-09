@@ -40,6 +40,11 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticates?(id, password)
-    User.where('password = ?', password).find(1)
+    begin
+      User.where('password = ?', password).find(id)
+    rescue ActiveRecord::RecordNotFound
+      return nil
+    end
+
   end
 end

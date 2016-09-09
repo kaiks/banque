@@ -13,8 +13,10 @@
     <%= render 'layouts/navbar' %>
   </header>
 
+
   <main role="main" class="fill">
     <div class="container-fluid fill" role="main">
+      <%= flash_messages %>
       <%= yield %>
     </div>
   </main>
