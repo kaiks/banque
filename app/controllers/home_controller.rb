@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
   def index
-    puts attempt_login
-    puts session[:user_id]
     @user ||= User.new
   end
 
