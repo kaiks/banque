@@ -12,27 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.select :title, options_for_select(User.titles.map{|t| t[0] })%>
+    <%= f.select :title, options_for_select(User.titles.map{|t| t[0] }) %>
   </div>
   <div class="field">
-    <%= f.text_field :name %>
+    <%= f.text_field :name, maxlength: 15 %>
   </div>
   <div class="field">
     <%= f.text_field :surname %>
   </div>
   <div class="field">
-    <%= f.text_field :birth_date %>
+    <%= f.date_field :birth_date, placeholder: 'YYYY-MM-DD' %>
   </div>
   <div class="field">
     <%= f.text_field :city %>
   </div>
   <div class="field">
-    <%= f.select :income_bracket, options_for_select(IncomeBracket.all.map{|ib| [ib.to_s,ib.id] })%>
+    <%= f.collection_select :income_bracket_id, IncomeBracket.all, :id, :to_s, prompt: 'Choisissez revenu' %>
+    <%#= f.select :income_bracket_id, options_for_select(IncomeBracket.all.map{|ib| [ib.to_s,ib.id] })%>
   </div>
   <div class="field">
     <%= f.password_field :password %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions row">
+    <div class="col-md-5">
+    <%= f.submit 'Create user', class: "btn btn-primary btn-block" %>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 text-right">
+      <%= link_to 'Back', "history.back()", class: "btn btn-warning btn-block" %></p>
+    </div>
   </div>
 <% end %>

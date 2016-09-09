@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909105530) do
+ActiveRecord::Schema.define(version: 20160909153944) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "number",     limit: 11,             null: false
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20160909105530) do
     t.string   "surname",           limit: 80,                 null: false
     t.date     "birth_date",                                   null: false
     t.string   "city",              limit: 100,                null: false
-    t.string   "income_bracket_id",                            null: false
+    t.integer  "income_bracket_id",                            null: false
     t.string   "password",          limit: 100,                null: false
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false

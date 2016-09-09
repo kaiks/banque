@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
   def name_with_title
     title + ' ' + name + ' ' + surname
   end
+
+  def self.authenticates?(id, password)
+    User.where('password = ?', password).find(1)
+  end
 end

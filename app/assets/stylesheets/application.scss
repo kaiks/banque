@@ -2,3 +2,26 @@
 /*
  *= require rails_bootstrap_forms
  */
+html, body { min-height: 100%; height: 100%; }
+
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.fill {
+  min-height: 100%; height: 100%;
+}
+
+.vcenter {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  width: 100%;
+}
+.margin-bar {
+  height:10em;
+  width:100%;
+}

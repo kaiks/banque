@@ -36,4 +36,7 @@ class IncomeBracket < ActiveRecord::Base
     max == -1
   end
 
+  def income_bracket_params
+    params.require(:income_bracket).permit(:id, :income_bracket_id)
+  end
 end

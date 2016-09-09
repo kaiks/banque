@@ -1,0 +1,29 @@
+<%= bootstrap_form_tag url: sessions_new_url, method: :post do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.text_field :id %>
+    </div>
+  <div class="field">
+    <%= f.password_field :password %>
+  </div>
+  <div class="actions row">
+    <div class="col-md-5">
+    <%= f.submit 'Login', class: "btn btn-primary btn-block" %>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 text-right">
+      <%= link_to 'Register', new_user_path, class: "btn btn-success btn-block" %></p>
+    </div>
+  </div>
+<% end %>
