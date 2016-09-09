@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    attempt_login
     @user ||= User.new
   end
 
