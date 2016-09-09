@@ -1,14 +1,25 @@
 class HomeController < ApplicationController
   def index
-    @user = User.new
+    puts attempt_login
+    puts session[:user_id]
+    @user ||= User.new
   end
 
   def dashboard
-    puts "dank memes #{session[:user_id]}"
+    redirect_to action: 'index' unless login_success?
+  end
+
+  def attempt_login
+    redirect_to action: 'dashboard' if login_success?
+  end
+
+  private
+  def login_success?
     if session.fetch(:user_id, 0) > 0
-      @user = User.find(session[:user_id])
+      @user ||= User.find(session[:user_id])
+      true
     else
-      redirect_to root_path
+      false
     end
   end
 end
