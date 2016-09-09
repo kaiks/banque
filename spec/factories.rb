@@ -2,6 +2,11 @@ FactoryGirl.define do
   factory :income_bracket do
     min 0
     max 999
+
+    factory :open_bracket do
+      min 1000
+      max -1
+    end
   end
 
   factory :user do

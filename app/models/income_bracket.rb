@@ -14,12 +14,26 @@ class IncomeBracket < ActiveRecord::Base
     IncomeBracket.where('min >= :min AND min <= :max OR max >= :min AND max <= :max', params).exists?
   end
 
+  def to_s
+    if max == -1
+      min.to_s << ' ou plus'
+    else
+      min.to_s << ' - ' << max.to_s
+    end
+  end
+
   private
   def does_not_intersect
     errors.add :base, 'Il y a une tranche de revenus qui s\'intersecte avec celui-ci' if intersects?
   end
 
   def has_positive_bracket
-    errors.add :max, 'La valeur de max doit être supérieure à min' unless min.nil? or max.nil? or max > min
+    errors.add :max, 'La valeur de max doit être supérieure à min' unless
+    min.nil? or max.nil? or max > min or open?
   end
+
+  def open?
+    max == -1
+  end
+
 end

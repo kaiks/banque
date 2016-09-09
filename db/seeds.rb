@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+income_brackets =
+  IncomeBracket.create([
+                           {min: 0, max: 999},
+                       {min: 1000, max: 1999},
+                       {min: 2000, max: 2999},
+                       {min: 3000}
+                       ])
