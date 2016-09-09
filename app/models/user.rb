@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
       message: "Le nom de ville n'est pas vailde."
   }
 
+  enum title: [:Mr, :Mme, :Mlle]
   validates :title, inclusion: { in: %w(Mr Mme Mlle),
                                  message: "Civilité n'est pas valide"
   }

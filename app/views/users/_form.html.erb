@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= bootstrap_form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -12,32 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.select :title, options_for_select(User.titles.map{|t| t[0] })%>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :surname %><br>
     <%= f.text_field :surname %>
   </div>
   <div class="field">
-    <%= f.label :birth_date %><br>
     <%= f.text_field :birth_date %>
   </div>
   <div class="field">
-    <%= f.label :city %><br>
     <%= f.text_field :city %>
   </div>
   <div class="field">
-    <%= f.label :income_bracket %><br>
-    <%= f.number_field :income_bracket %>
+    <%= f.select :income_bracket, options_for_select(IncomeBracket.all.map{|ib| [ib.to_s,ib.id] })%>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_area :password %>
+    <%= f.password_field :password %>
   </div>
   <div class="actions">
     <%= f.submit %>
