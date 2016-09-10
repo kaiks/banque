@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_admin, only: [:edit, :update, :destroy]
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -68,6 +69,9 @@ class AccountsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+  def account_params
+    params.require(:account).permit(:title, :name, :surname, :birth_date, :city, :income_bracket_id, :password)
+  end
     def account_params
       params.fetch(:account, {})
     end

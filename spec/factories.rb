@@ -40,6 +40,10 @@ FactoryGirl.define do
       admin
       managed_at DateTime.now
       status :accepted
+
+      factory :refused_transaction do
+        status :refused
+      end
     end
   end
 

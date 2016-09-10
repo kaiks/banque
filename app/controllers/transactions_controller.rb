@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
-  before_action :login_success?
+  before_action :login_success?, only: [:show, :new, :create]
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin, only: [:edit, :update, :destroy, :waiting]
 
   # GET /transactions
   # GET /transactions.json
@@ -20,6 +21,11 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+  end
+
+  #todo
+  def waiting
+
   end
 
   # POST /transactions
@@ -70,6 +76,10 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:account_id, :type, :status, :accepted_by)
+      params.require(:transaction).permit(:account_id, :amount, :type)
+    end
+
+    def transaction_admin_params
+      params.require(:transaction).permit(:account_id, :amount, :type, :status, :accepted_by)
     end
 end

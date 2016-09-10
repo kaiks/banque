@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909153944) do
+ActiveRecord::Schema.define(version: 20160910114900) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "number",     limit: 11,             null: false
-    t.integer  "bank_code",  limit: 3,              null: false
-    t.integer  "sort_code",  limit: 3,              null: false
-    t.integer  "rib_key",    limit: 1,              null: false
-    t.integer  "status",                default: 0, null: false
+    t.string   "number",     limit: 11,               null: false
+    t.integer  "bank_code",  limit: 3,                null: false
+    t.integer  "sort_code",  limit: 3,                null: false
+    t.integer  "rib_key",    limit: 1,                null: false
+    t.integer  "status",                default: 0,   null: false
     t.integer  "user_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.float    "balance",               default: 0.0, null: false
   end
 
   add_index "accounts", ["number"], name: "index_accounts_on_number", unique: true
