@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :admin, foreign_key: :managed_by
 
   enum status: [:waiting, :refused, :accepted]
-  enum type: [:debit, :credit]
+  enum transaction_type: [:debit, :credit]
 
   validates :amount, :numericality => { :greater_than => 0,
     :message => 'Le montant de la transaction doit excéder 0.'}
@@ -25,7 +25,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def balance_change
-    type == 'debit' ? amount : -amount
+    transaction_type == 'debit' ? amount : -amount
   end
 
 

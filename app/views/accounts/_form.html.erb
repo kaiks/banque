@@ -1,17 +1,23 @@
-<%= form_for(@account) do |f| %>
-  <% if @account.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+<%= bootstrap_form_for(@account) do |f| %>
+    <% if @account.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@account.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @account.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @account.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="actions row">
+      <div class="col-md-5">
+        <%= f.submit 'Create account', class: "btn btn-primary btn-block" %>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-5 text-right">
+        <%= link_to 'Back', "history.back()", class: "btn btn-warning btn-block" %></p>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

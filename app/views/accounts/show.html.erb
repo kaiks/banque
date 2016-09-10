@@ -1,4 +1,17 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>RIB:</strong>
+  <%= @account.rib %>
+</p>
+
+<p>
+  <strong>status:</strong>
+  <%= @account.status %>
+</p>
+
+<p>
+  <strong>Balance:</strong>
+  <%= @account.balance %>
+</p>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>

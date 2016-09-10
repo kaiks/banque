@@ -6,6 +6,8 @@ class HomeController < ApplicationController
 
   def dashboard
     redirect_to action: 'index' unless login_success?
+    @accounts = @current_user.accounts
+    @recent_transactions = @current_user.transactions.last(5)
   end
 
   def attempt_login

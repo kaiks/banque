@@ -3,10 +3,10 @@
     <%= link_to 'Home', root_path %>
   </li>
   <li class="<%= 'active' if current_page?(controller: 'accounts') %>">
-    <%= link_to 'Accounts', '#' %>
+    <%= link_to 'Accounts', accounts_path%>
   </li>
   <li class="<%= 'active' if current_page?(controller: 'transactions') %>">
-    <%= link_to 'Transactions', '#' %>
+    <%= link_to 'Transactions', transactions_path %>
   </li>
   <li> <%= link_to('Log out', logout_path) %> </li>
 <% else %>

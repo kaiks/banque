@@ -25,7 +25,11 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
-    @account = Account.new(account_params)
+    puts "one two three"
+    @account = Account.new
+    puts "#{@account.number} account number"
+    @account.user_id = session[:user_id]
+    puts "#{@account.number} account number"
 
     respond_to do |format|
       if @account.save
@@ -70,9 +74,11 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def account_params
-    params.require(:account).permit(:title, :name, :surname, :birth_date, :city, :income_bracket_id, :password)
+    params.require(:account).permit()
   end
-    def account_params
-      params.fetch(:account, {})
-    end
+
+    # Only allow for status changes.
+  def account_admin_params
+    params.require(:account).permit(:status)
+  end
 end

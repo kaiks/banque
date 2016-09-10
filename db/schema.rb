@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910114900) do
+ActiveRecord::Schema.define(version: 20160910160425) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "number",     limit: 11,               null: false
@@ -50,14 +50,14 @@ ActiveRecord::Schema.define(version: 20160910114900) do
   add_index "income_brackets", ["min"], name: "index_income_brackets_on_min", unique: true
 
   create_table "transactions", force: :cascade do |t|
-    t.float    "amount",                 null: false
-    t.integer  "type",       default: 0, null: false
-    t.integer  "status",     default: 0, null: false
+    t.float    "amount",                       null: false
+    t.integer  "transaction_type", default: 0, null: false
+    t.integer  "status",           default: 0, null: false
     t.integer  "managed_by"
     t.datetime "managed_at"
-    t.integer  "account_id",             null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "account_id",                   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "transactions", ["account_id"], name: "index_transactions_on_account_id"

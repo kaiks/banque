@@ -103,14 +103,14 @@ RSpec.describe Transaction, type: :model do
     include_context 'shared stuff'
     context 'when type is debit' do
       it 'is positive' do
-        transaction.type = 'debit'
+        transaction.transaction_type = 'debit'
         expect(transaction.balance_change).to eq transaction.amount
       end
     end
 
     context 'when type is credit' do
       it 'is negative' do
-        transaction.type = 'credit'
+        transaction.transaction_type = 'credit'
         expect(transaction.balance_change).to eq -transaction.amount
     end
     end

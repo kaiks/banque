@@ -16,7 +16,9 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/new
   def new
-    @transaction = Transaction.new
+    @transaction  = Transaction.new
+    @accounts     = @current_user.accounts
+    puts "accounts: #{@accounts.map{|a|a.rib}.join(' ')}"
   end
 
   # GET /transactions/1/edit
@@ -76,10 +78,10 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:account_id, :amount, :type)
+      params.require(:transaction).permit(:account_id, :amount, :transaction_type)
     end
 
     def transaction_admin_params
-      params.require(:transaction).permit(:account_id, :amount, :type, :status, :accepted_by)
+      params.require(:transaction).permit(:account_id, :amount, :transaction_type, :status, :managed_by)
     end
 end

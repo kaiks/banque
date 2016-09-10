@@ -28,7 +28,6 @@
   </div>
   <div class="field">
     <%= f.collection_select :income_bracket_id, IncomeBracket.all, :id, :to_s, prompt: 'Choisissez revenu' %>
-    <%#= f.select :income_bracket_id, options_for_select(IncomeBracket.all.map{|ib| [ib.to_s,ib.id] })%>
   </div>
   <div class="field">
     <%= f.password_field :password %>

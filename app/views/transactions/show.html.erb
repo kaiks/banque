@@ -7,7 +7,12 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @transaction.type %>
+  <%= @transaction.transaction_type %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @transaction.amount %>
 </p>
 
 <p>
@@ -15,10 +20,6 @@
   <%= @transaction.status %>
 </p>
 
-<p>
-  <strong>Accepted by:</strong>
-  <%= @transaction.accepted_by %>
-</p>
 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
 <%= link_to 'Back', transactions_path %>

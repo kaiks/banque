@@ -2,6 +2,8 @@
 #todo: check date format and do validation if necessary
 class User < ActiveRecord::Base
   has_many :accounts
+  has_many :transactions, through: :accounts
+
   belongs_to :income_bracket
   validates :income_bracket,  presence: true
   validates :birth_date,      presence: true
