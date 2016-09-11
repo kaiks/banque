@@ -20,10 +20,10 @@
         <td><%= link_to 'Details', account %></td>
         <% if admin_view %>
             <td>
-              <%= link_to 'Activer', accounts_activate_url(id: account.id),
+              <%= link_to 'Activer', activate_account_url(id: account.id),
                           method: :post if !account.active? %>
               <%= link_to 'Fermer',
-                          accounts_close_url(id: account.id),
+                          close_account_url(id: account.id),
                           method: :post, data: { confirm: 'Are you sure?' } if account.active? %>
             </td>
         <% else %>

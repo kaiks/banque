@@ -30,9 +30,9 @@
         <% end %>
         <td><%= image_tag ApplicationHelper::STATE_MAP[transaction.status], class: 'icon' %></td>
         <% if admin_view and transaction.waiting? %>
-            <td><%= link_to '✔', transactions_accept_url(id: transaction.id),
+            <td><%= link_to '✔', accept_transaction_url(id: transaction.id),
                              method: :post %></td>
-            <td><%= link_to '✖', transactions_refuse_url(id: transaction.id),
+            <td><%= link_to '✖', refuse_transaction_url(id: transaction.id),
                             data: { confirm: 'Are you sure?', method: :post } %></td>
         <% else %>
           <td><%= link_to '✖', transaction, method: :delete, data: { confirm: 'Cancel transaction?' } if transaction.status == 'waiting' %></td>
