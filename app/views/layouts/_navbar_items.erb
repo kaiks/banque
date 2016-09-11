@@ -1,15 +1,25 @@
 <% if session[:user_id] %>
-  <li class="<%= 'active' if current_page?(root_path) %>">
-    <%= link_to 'Home', root_path %>
+  <li class="<%= 'active' if current_page?(dashboard_path) %>">
+    <%= link_to 'Dashboard', dashboard_path %>
   </li>
   <li class="<%= 'active' if current_page?(controller: 'accounts') %>">
-    <%= link_to 'Accounts', accounts_path%>
+    <%= link_to 'Mes comptes', accounts_path%>
   </li>
-  <li class="<%= 'active' if current_page?(controller: 'transactions') %>">
-    <%= link_to 'Transactions', transactions_path %>
-  </li>
+
   <li> <%= link_to('Log out', logout_path) %> </li>
-<% else %>
+<% end %>
+<% if session[:admin_id] %>
+    <li class="<%= 'active' if current_page?(admins_index_path) %>">
+      <%= link_to 'Admin dashboard', admins_index_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(controller: 'transactions') %>">
+      <%= link_to 'Transactions', transactions_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(controller: 'users') %>">
+      <%= link_to 'Utilisateurs', users_path %>
+    </li>
+    <li> <%= link_to('Admin log out', admin_logout_path) %> </li>
+<% elsif !session[:user_id] %>
     <li class="active">
       <%= link_to 'Home', root_path %>
     </li>
