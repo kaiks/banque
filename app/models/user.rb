@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     title + ' ' + name + ' ' + surname
   end
 
+  def age
+    diff = ((Date.today - birth_date)/365).floor
+  end
+
   def self.authenticates?(id, password)
     begin
       User.where('password = ?', password).find(id)

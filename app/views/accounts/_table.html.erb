@@ -1,5 +1,5 @@
 <% admin_view = local_assigns[:admin]||false  %>
-<% end_cols   = admin_view == true ? 3 : 2 %>
+<% end_cols   = admin_view == true ? 2 : 1 %>
 <% accounts = local_assigns[:accounts]||@accounts %>
 <table class="table table-striped table-responsive">
   <thead>
@@ -16,19 +16,18 @@
       <tr <%= 'class=danger' if account.balance < 0 %> >
         <td><%= account.number %></td>
         <td><%= account.balance%></td>
-        <td><%= account.status %></td>
+        <td><%= image_tag ApplicationHelper::STATE_MAP[account.status], class: 'icon' %></td>
         <td><%= link_to 'Details', account %></td>
         <% if admin_view %>
             <td>
-              <%= link_to '✔', accounts_activate_url(id: account.id),
+              <%= link_to 'Activer', accounts_activate_url(id: account.id),
                           method: :post if !account.active? %>
-            </td>
-            <td>
-              <%= link_to 'Fermer', accounts_close_url(id: account.id),
-                          method: :post, data: { confirm: 'Are you sure?' } if !account.closed? %>
+              <%= link_to 'Fermer',
+                          accounts_close_url(id: account.id),
+                          method: :post, data: { confirm: 'Are you sure?' } if account.active? %>
             </td>
         <% else %>
-            <td><%= link_to '✖', account, method: :delete, data: { confirm: 'Delete account?' } if account.deletable? %></td>
+            <td><%= link_to 'Supprimer', account, method: :delete, data: { confirm: 'Supprimer compte?' } if account.deletable? %></td>
         <% end %>
       </tr>
   <% end %>

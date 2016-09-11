@@ -18,7 +18,7 @@
 
   <tbody>
   <% transactions.each do |transaction| %>
-      <tr <%= 'class="danger"' if transaction.transaction_type=='credit' %> >
+      <tr <%= 'class=danger' if transaction.transaction_type=='credit' %> >
         <td>
           <%= admin_view ? transaction.account.number : transaction.account.rib %>
         </td>

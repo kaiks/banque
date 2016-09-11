@@ -2,6 +2,7 @@
   <p>
     <strong>RIB:</strong>
     <%= @account.rib %>
+    <%= link_to 'Imprimer', print_rib_account_path %>
   </p>
 
   <p>
@@ -15,6 +16,5 @@
   </p>
 
   <%= render 'transactions/table', transactions: @account.transactions %>
-  <%= link_to 'Edit', edit_account_path(@account) %> |
   <%= link_to 'Back', accounts_path %>
 </div>

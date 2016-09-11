@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Transactions</h1>
+<div class="col-md-6 col-md-offset-3">
+  <h1>Listing Transactions</h1>
 
-<%= render 'table' %>
+  <%= link_to 'New Transaction', new_transaction_path %>
 
-<br>
+  <%= render 'table' %>
+  <%= paginate @transactions, :theme => 'twitter-bootstrap-3' %>
+</div>
 
-<%= link_to 'New Transaction', new_transaction_path %>

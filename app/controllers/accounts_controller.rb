@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :ensure_user_authenticated, only: [:new, :show, :index, :destroy]
+  before_action :ensure_user_authenticated, only: [:new, :show, :index, :destroy, :print_rib]
   before_action :ensure_admin_authenticated,
                 only: [:edit, :update, :destroy, :activate, :close]
   before_action :set_account, only: [:show, :edit, :update, :destroy]
@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = @current_user.accounts.order(id: :desc).page(params[:page]).per(10)
   end
 
   # GET /accounts/1
@@ -82,6 +82,15 @@ class AccountsController < ApplicationController
     a.closed!
 
     redirect_to request.referer, notice: 'Account closed'
+  end
+
+  def print_rib
+    @account = Account.find(params[:id])
+    if @account.user == @current_user
+      @rib = @account.rib
+    else
+      redirect_to accounts_url, alert: 'Mauvais id du compte'
+    end
   end
 
   private

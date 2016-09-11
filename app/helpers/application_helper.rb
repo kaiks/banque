@@ -8,9 +8,10 @@ module ApplicationHelper
 
   STATE_MAP = {
       'waiting' => 'wait.png',
-      'active' => 'ok.png',
+      'active' => 'yes.png',
       'accepted' => 'yes.png',
-      'refused' => 'no.png'
+      'refused' => 'no.png',
+      'closed' => 'no.png'
   }
 
   COLORS = %w(

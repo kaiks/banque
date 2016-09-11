@@ -17,15 +17,23 @@ Rails.application.routes.draw do
   get 'admins', to: 'admins#index'
   get 'sessions/new'
 
-  resources :transactions
-  resources :accounts
+  resources :transactions do
+    member do
+      post 'accept'
+      post 'refuse'
+    end
+  end
+
+  resources :accounts do
+    member do
+      get 'print_rib'
+      post 'activate'
+      post 'close'
+    end
+  end
+
   get 'home/index'
 
-  post 'transactions/accept'
-  post 'transactions/refuse'
-
-  post 'accounts/activate'
-  post 'accounts/close'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
