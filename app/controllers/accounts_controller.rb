@@ -28,7 +28,6 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
-    puts "one two three"
     @account = Account.new
     puts "#{@account.number} account number"
     @account.user_id = session[:user_id]

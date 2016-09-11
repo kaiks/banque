@@ -1,22 +1,27 @@
 <% admin_view = true %>
 <% users = local_assigns[:users]||@users %>
+<% extended =  local_assigns[:extended]||false %>
 <table class="table table-striped table-responsive">
   <thead>
   <tr>
+    <%= '<th>ID</th>'.html_safe if extended %>
     <th>Prénom</th>
     <th>Nom</th>
     <th>Age</th>
     <th>Ville</th>
+    <th></th>
   </tr>
   </thead>
 
   <tbody>
   <% users.each do |user| %>
       <tr>
+        <%= "<th>#{user.id}</th>".html_safe if extended %>
         <td><%= user.name%></td>
         <td><%= user.surname %></td>
         <td><%= user.age %></td>
         <td><%= user.city %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-default' %></td>
       </tr>
   <% end %>
   </tbody>

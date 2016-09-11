@@ -1,39 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-4 col-md-offset-4">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @user.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @user.title %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
 
-<p>
-  <strong>Surname:</strong>
-  <%= @user.surname %>
-</p>
+  <p>
+    <strong>Surname:</strong>
+    <%= @user.surname %>
+  </p>
 
-<p>
-  <strong>Birth date:</strong>
-  <%= @user.birth_date %>
-</p>
+  <p>
+    <strong>Birth date:</strong>
+    <%= @user.birth_date %>
+  </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
+  <p>
+    <strong>City:</strong>
+    <%= @user.city %>
+  </p>
 
-<p>
-  <strong>Income bracket:</strong>
-  <%= @user.income_bracket %>
-</p>
+  <p>
+    <strong>Income bracket:</strong>
+    <%= @user.income_bracket %>
+  </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
+  <p>
+    <strong>Password:</strong>
+    <%= @user.password %>
+  </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+</div>

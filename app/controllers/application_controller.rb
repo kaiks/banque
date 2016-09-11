@@ -4,13 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   protected
-  def login_success?
-    if session.fetch(:user_id, 0) > 0
-      @current_user ||= User.find(session[:user_id])
-      true
-    else
-      false
-    end
+  def ensure_user_or_admin_authenticated(return_to = root_url)
+    redirect_to return_to unless login_success? or admin_logged_in?
   end
 
   def ensure_user_authenticated(return_to = root_url)
@@ -19,6 +14,15 @@ class ApplicationController < ActionController::Base
 
   def ensure_admin_authenticated(return_to = root_url)
     redirect_to return_to unless admin_logged_in?
+  end
+
+  def login_success?
+    if session.fetch(:user_id, 0) > 0
+      @current_user ||= User.find(session[:user_id])
+      true
+    else
+      false
+    end
   end
 
   def admin_logged_in?

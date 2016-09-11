@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+  before_action :ensure_user_or_admin_authenticated, only: [:show, :edit, :update, :new, :create]
+  before_action :ensure_admin_authenticated,
+                only: [:index, :destroy, :waiting, :accept, :reject]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    redirect_to @user, alert: 'Vous êtes déjà connecté' if session[:user_id]
     @user = User.new
     @brackets = IncomeBracket.all
   end
@@ -26,6 +29,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    redirect_to @user, alert: 'Vous êtes déjà connecté' if session[:user_id]
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -68,7 +72,11 @@ class UsersController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = @current_user
+    if admin_logged_in?
+      @user = User.find(params[:id]) || @current_user
+    else
+      @user = @current_user
+    end
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.
