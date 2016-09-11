@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def ensure_user_or_admin_authenticated(return_to = root_url)
-    redirect_to return_to unless login_success? or admin_logged_in?
+    redirect_to return_to unless (login_success? || admin_logged_in?)
   end
 
   def ensure_user_authenticated(return_to = root_url)

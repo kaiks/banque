@@ -21,6 +21,7 @@ body {
 img {
   width: 100%;
 }
+
 .margin-bar {
   height:10em;
   width:100%;
@@ -29,6 +30,10 @@ img {
 .icon {
   width: 1.5em;
   height: 1.5em;
+}
+
+.clickable:hover {
+  cursor:pointer;
 }
 
 @media print{

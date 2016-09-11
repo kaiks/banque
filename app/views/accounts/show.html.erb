@@ -14,7 +14,7 @@
     <strong>Balance:</strong>
     <%= @account.balance %>
   </p>
-
+  <h3>Transactions:</h3>
   <%= render 'transactions/table', transactions: @account.transactions %>
   <%= paginate @transactions, :theme => 'twitter-bootstrap-3' %>
   <%= link_to 'Back', accounts_path %>

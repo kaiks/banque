@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :ensure_user_authenticated, only: [:new, :show, :index, :destroy, :print_rib]
+  before_action :ensure_user_or_admin_authenticated, only: [:new, :show, :index, :destroy, :print_rib]
   before_action :ensure_admin_authenticated,
                 only: [:edit, :update, :destroy, :activate, :close]
   before_action :set_account, only: [:show, :edit, :update, :destroy]
@@ -29,9 +29,7 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new
-    puts "#{@account.number} account number"
     @account.user_id = session[:user_id]
-    puts "#{@account.number} account number"
 
     respond_to do |format|
       if @account.save

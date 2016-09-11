@@ -1,7 +1,7 @@
 <% admin_view = local_assigns[:admin]||false  %>
-<% end_cols   = admin_view == true ? 2 : 1 %>
+<% end_cols   = admin_view == true ? 1 : 0 %>
 <% accounts = local_assigns[:accounts]||@accounts %>
-<table class="table table-striped table-responsive">
+<table class="table table-striped table-responsive table-hover">
   <thead>
   <tr>
     <th>RIB</th>
@@ -13,11 +13,11 @@
 
   <tbody>
   <% accounts.each do |account| %>
-      <tr <%= 'class=danger' if account.balance < 0 %> >
+      <tr data-link="<%= account_path(account) %>"
+          class="<%= 'clickable' << (account.balance < 0 ? ' danger':'') %>">
         <td><%= account.number %></td>
         <td><%= account.balance%></td>
         <td><%= image_tag ApplicationHelper::STATE_MAP[account.status], class: 'icon' %></td>
-        <td><%= link_to 'Details', account %></td>
         <% if admin_view %>
             <td>
               <%= link_to 'Activer', activate_account_url(id: account.id),

@@ -1,7 +1,7 @@
 <% admin_view = local_assigns[:admin]||false  %>
 <% end_cols   = admin_view == true ? 2 : 1 %>
 <% transactions = local_assigns[:transactions]||@transactions %>
-<table class="table table-striped table-responsive">
+<table class="table table-striped table-responsive table-hover">
   <thead>
   <tr>
     <th>Compte</th>
@@ -18,7 +18,8 @@
 
   <tbody>
   <% transactions.each do |transaction| %>
-      <tr <%= 'class=danger' if transaction.transaction_type=='credit' %> >
+      <tr data-link="<%= transaction_path(transaction) %>"
+          class="<%= 'clickable' << (transaction.transaction_type == 'credit' ? ' danger':'') %>">
         <td>
           <%= admin_view ? transaction.account.number : transaction.account.rib %>
         </td>
