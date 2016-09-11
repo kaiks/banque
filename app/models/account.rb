@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
   after_initialize :set_defaults, if: :new_record?
   belongs_to :user
+  has_many :transactions
   enum status: [:waiting, :active, :closed]
 
 
@@ -17,6 +18,10 @@ class Account < ActiveRecord::Base
     rib += sort_code.to_s.rjust(5, '0')
     rib += number
     rib += rib_key.to_s.rjust(2, '0')
+  end
+
+  def deletable?
+    status == 'waiting' && transactions.count == 0
   end
 
   private

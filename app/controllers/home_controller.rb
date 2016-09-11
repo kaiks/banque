@@ -7,6 +7,8 @@ class HomeController < ApplicationController
   def dashboard
     redirect_to action: 'index' unless login_success?
     @accounts = @current_user.accounts
+    @positive_accounts = @accounts.where('balance > 0')
+    @total_cash = @accounts.sum(:balance)
     @recent_transactions = @current_user.transactions.last(5)
   end
 

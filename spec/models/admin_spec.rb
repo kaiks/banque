@@ -17,4 +17,10 @@ RSpec.describe Admin, type: :model do
     expect(admin).to be_valid
   end
 
+  it 'authenticates with valid parameters' do
+    admin.save!
+    login_result = Admin.authenticates?('admin', 'admin123')
+    expect(login_result).to be_instance_of Admin
+  end
+
 end

@@ -1,0 +1,38 @@
+<% admin_view = local_assigns[:admin]||false  %>
+<% end_cols   = admin_view == true ? 3 : 2 %>
+<% transactions = local_assigns[:transactions]||@transactions %>
+<table class="table table-striped table-responsive">
+  <thead>
+  <tr>
+    <th>Compte</th>
+    <th>Montant</th>
+    <th>Type</th>
+    <th>Date de la dernière action</th>
+    <%= '<th>Admin</th>' if admin_view %>
+    <th>Status</th>
+    <th colspan="<%= end_cols %>"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% transactions.each do |transaction| %>
+      <tr <%= 'class="danger"' if transaction.transaction_type=='credit' %> >
+        <td><%= transaction.account.rib %></td>
+        <td><%= transaction.amount %></td>
+        <td><%= transaction.transaction_type %></td>
+        <td><%= transaction.managed_at %></td>
+        <% if admin_view %>
+        <td><%= transaction.admin.username %></td>
+        <% end %>
+        <td><%= transaction.status %></td>
+        <td><%= link_to 'Show', transaction %></td>
+        <% if admin_view %>
+            <td><%= link_to '✔', action: accept, id: transaction.id %></td>
+            <td><%= link_to '✖', action: reject, id: transaction.id, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td><%= link_to '✖', transaction, method: :delete, data: { confirm: 'Cancel transaction?' } if transaction.status == 'waiting' %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

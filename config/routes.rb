@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  get 'admins/index'
+  get 'admins/login'
+  post 'admins/login'
+  post 'admins', to: 'sessions#login_admin'
+
+
+  get 'admins/edit_transactions'
+
+  get 'admins/edit_accounts'
+
+  get 'admins/edit_user'
+
+  get 'admins/edit_user_transactions'
+
+  get 'admins/edit_user_accounts'
+  get 'admins', to: 'admins#index'
   get 'sessions/new'
 
   resources :transactions

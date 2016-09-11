@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  before_action :authenticate_admin, only: [:edit, :update, :destroy]
+  before_action :ensure_user_authenticated, only: [:new, :show, :index, :destroy]
+  before_action :ensure_admin_authenticated, only: [:edit, :update, :destroy]
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts

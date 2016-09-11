@@ -1,0 +1,28 @@
+<div class="col-md-4 col-md-offset-4">
+  <h1>login</h1>
+  <%= bootstrap_form_for(@admin) do |f| %>
+      <% if @admin.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+
+            <ul>
+              <% @admin.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.text_field :username, maxlength: 40 %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password %>
+      </div>
+      <div class="actions row">
+        <div class="col-md-5">
+          <%= f.submit 'Log in', class: "btn btn-default btn-block" %>
+        </div>
+      </div>
+  <% end %>
+</div>

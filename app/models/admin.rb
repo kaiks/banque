@@ -18,4 +18,12 @@ class Admin < ActiveRecord::Base
       message: "Le nom de passe n'est pas vailde."
   }
   validates :username, uniqueness: true
+
+  def self.authenticates?(username, password)
+    begin
+      Admin.where(username: username).where(password: password).first
+    rescue ActiveRecord::RecordNotFound
+      return nil
+    end
+  end
 end

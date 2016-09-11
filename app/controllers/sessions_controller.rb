@@ -5,7 +5,17 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to dashboard_url
     else
-      redirect_to root_url, :alert => "Mot de pass n'est pas valid."
+      redirect_to root_url, :alert => "Mot de pass n'est pas valide."
+    end
+  end
+
+  def login_admin
+    admin = Admin.authenticates?(params[:admin][:username], params[:admin][:password])
+    if admin
+      session[:admin_id] = admin.id
+      redirect_to admins_url
+    else
+      redirect_to controller: :admins, action: 'login', :alert => "Mot de pass n'est pas valide."
     end
   end
 

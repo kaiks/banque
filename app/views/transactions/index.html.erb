@@ -2,32 +2,7 @@
 
 <h1>Listing Transactions</h1>
 
-<table class="table table-striped table-responsive">
-  <thead>
-    <tr>
-      <th>Compte</th>
-      <th>Montant</th>
-      <th>Type</th>
-      <th>Date de la dernière action</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= transaction.account.rib %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.transaction_type %></td>
-        <td><%= transaction.managed_at %></td>
-        <td><%= transaction.status %></td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Cancel', transaction, method: :delete, data: { confirm: 'Are you sure?' } if transaction.status == 'waiting' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'table' %>
 
 <br>
 

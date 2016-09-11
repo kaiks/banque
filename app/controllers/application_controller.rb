@@ -12,4 +12,22 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+
+  def ensure_user_authenticated(return_to = root_url)
+    redirect_to return_to unless login_success?
+  end
+
+  def ensure_admin_authenticated(return_to = root_url)
+    redirect_to return_to unless admin_logged_in?
+  end
+
+  def admin_logged_in?
+    if session.fetch(:admin_id, 0) > 0
+      @current_admin ||= Admin.find(session[:admin_id])
+      true
+    else
+      false
+    end
+  end
+
 end

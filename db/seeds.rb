@@ -13,3 +13,5 @@ income_brackets =
                        {min: 2000, max: 2999},
                        {min: 3000, max: -1}
                        ])
+
+admin = Admin.create(username: 'admin', password: 'pwd123', name: 'Super', surname: 'User')

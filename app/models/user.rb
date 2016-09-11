@@ -47,6 +47,5 @@ class User < ActiveRecord::Base
     rescue ActiveRecord::RecordNotFound
       return nil
     end
-
   end
 end

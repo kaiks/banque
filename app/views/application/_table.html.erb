@@ -1,0 +1,27 @@
+<% column_names   = local_assigns[:data].column_names||local_assigns[:col_names] %>
+<% end_span       = local_assigns[:end_span]||0 %>
+<% end_columns    = local_assigns[:accept_reject]||[] %>
+
+<table class="table table-striped table-responsive">
+  <thead>
+  <tr>
+    <% column_names.each do |name| %>
+      <th>name</th>
+    <% end %>
+    <%= "<th colspan=\"#{end_span}\"></th>" unless end_span == 0 %>
+  </tr>
+  </thead>
+
+  <tbody>
+      <% local_assigns[:data].each do |e| %>
+        <tr>
+          <% local_assigns[:data].each_pair do |n, v| %>
+            <td><%= v %></td>
+          <% end %>
+          <% end_columns.each do |c|%>
+            <td><%= c %></td>
+          <% end %>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
