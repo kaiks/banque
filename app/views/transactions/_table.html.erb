@@ -21,14 +21,16 @@
         <td><%= transaction.amount %></td>
         <td><%= transaction.transaction_type %></td>
         <td><%= transaction.managed_at %></td>
-        <% if admin_view %>
+        <% if admin_view and !transaction.admin.nil? %>
         <td><%= transaction.admin.username %></td>
         <% end %>
         <td><%= transaction.status %></td>
         <td><%= link_to 'Show', transaction %></td>
         <% if admin_view %>
-            <td><%= link_to '✔', action: accept, id: transaction.id %></td>
-            <td><%= link_to '✖', action: reject, id: transaction.id, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to '✔', transactions_accept_url(id: transaction.id),
+                             method: :post %></td>
+            <td><%= link_to '✖', transactions_reject_url(id: transaction.id),
+                            data: { confirm: 'Are you sure?', method: :post } %></td>
         <% else %>
           <td><%= link_to '✖', transaction, method: :delete, data: { confirm: 'Cancel transaction?' } if transaction.status == 'waiting' %></td>
         <% end %>

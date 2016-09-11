@@ -1,2 +1,10 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <%= render 'transactions/table', transactions: @recent_transactions, admin: true %>
+  </div>
+  <div class="col-md-4">
+    <%= render 'accounts/table', accounts: @recent_accounts, admin: true %>  </div>
+  <div class="col-md-4">
+    <%= render 'table', model: @recent_users %>
+  </div>
+</div>

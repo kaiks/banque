@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   resources :accounts
   get 'home/index'
 
+  post 'transactions/accept'
+  post 'transactions/reject'
 
+  post 'accounts/activate'
+  post 'accounts/close'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

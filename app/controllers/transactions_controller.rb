@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :ensure_user_authenticated, only: [:show, :new, :create]
-  before_action :ensure_admin_authenticated, only: [:edit, :update, :destroy, :waiting]
+  before_action :ensure_admin_authenticated,
+                only: [:edit, :update, :destroy, :waiting, :accept, :reject]
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   # GET /transactions
@@ -27,8 +28,9 @@ class TransactionsController < ApplicationController
 
   #todo
   def waiting
-
+    @transactions = Transaction.where(status: 'waiting')
   end
+
 
   # POST /transactions
   # POST /transactions.json
@@ -68,6 +70,26 @@ class TransactionsController < ApplicationController
       format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def accept
+    id = params[:id]
+    t = Transaction.find(id)
+    t.managed_by = session[:admin_id]
+    t.managed_at = DateTime.now
+    t.accepted!
+
+    redirect_to request.referer, notice: 'Transaction accepted'
+  end
+
+  def reject
+    id = params[:id]
+    t = Transaction.find(id)
+    t.managed_by = session[:admin_id]
+    t.managed_at = DateTime.now
+    t.rejected!
+
+    redirect_to request.referer, notice: 'Transaction rejected'
   end
 
   private

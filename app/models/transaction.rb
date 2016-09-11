@@ -36,7 +36,7 @@ class Transaction < ActiveRecord::Base
 
   def change_validation
     if persisted?
-      if changed == ['status'] && status_was == 'waiting'
+      if changed.include?('status') && status_was == 'waiting'
         update_balance
       else
         errors.add :base, 'On ne peut pas changer la transaction après qu\'elle soit sauvegardée'

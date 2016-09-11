@@ -20,11 +20,12 @@
         <td><%= link_to 'Details', account %></td>
         <% if admin_view %>
             <td>
-              <%= link_to '✔', action: activate, id: account.id if !account.active? %>
+              <%= link_to '✔', accounts_activate_url(id: account.id),
+                          method: :post if !account.active? %>
             </td>
             <td>
-              <%= link_to 'Fermer', action: close, id: account.id,
-                          data: { confirm: 'Are you sure?' } if !account.closed? %>
+              <%= link_to 'Fermer', accounts_close_url(id: account.id),
+                          method: :post, data: { confirm: 'Are you sure?' } if !account.closed? %>
             </td>
         <% else %>
             <td><%= link_to '✖', account, method: :delete, data: { confirm: 'Delete account?' } if account.deletable? %></td>

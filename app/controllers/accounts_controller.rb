@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   before_action :ensure_user_authenticated, only: [:new, :show, :index, :destroy]
-  before_action :ensure_admin_authenticated, only: [:edit, :update, :destroy]
+  before_action :ensure_admin_authenticated,
+                only: [:edit, :update, :destroy, :activate, :close]
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -65,6 +66,22 @@ class AccountsController < ApplicationController
       format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def activate
+    id = params[:id]
+    a = Account.find(id)
+    a.active!
+
+    redirect_to request.referer, notice: 'Account activated'
+  end
+
+  def close
+    id = params[:id]
+    a = Account.find(id)
+    a.closed!
+
+    redirect_to request.referer, notice: 'Account closed'
   end
 
   private
