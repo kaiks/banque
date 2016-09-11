@@ -46,6 +46,7 @@ class Transaction < ActiveRecord::Base
 
   def update_balance
     account.balance += balance_change
+    account.save!
   end
 
 end

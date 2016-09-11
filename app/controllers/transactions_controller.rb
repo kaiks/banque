@@ -82,12 +82,12 @@ class TransactionsController < ApplicationController
     redirect_to request.referer, notice: 'Transaction accepted'
   end
 
-  def reject
+  def refuse
     id = params[:id]
     t = Transaction.find(id)
     t.managed_by = session[:admin_id]
     t.managed_at = DateTime.now
-    t.rejected!
+    t.refused!
 
     redirect_to request.referer, notice: 'Transaction rejected'
   end

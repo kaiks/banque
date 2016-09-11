@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   post 'transactions/accept'
-  post 'transactions/reject'
+  post 'transactions/refuse'
 
   post 'accounts/activate'
   post 'accounts/close'
