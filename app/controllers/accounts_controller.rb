@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+    @transactions = @account.transactions.order(id: :desc).page(params[:page]).per(10)
   end
 
   # GET /accounts/new

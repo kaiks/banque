@@ -34,8 +34,6 @@
                              method: :post %></td>
             <td><%= link_to '✖', refuse_transaction_url(id: transaction.id),
                             data: { confirm: 'Are you sure?', method: :post } %></td>
-        <% else %>
-          <td><%= link_to '✖', transaction, method: :delete, data: { confirm: 'Cancel transaction?' } if transaction.status == 'waiting' %></td>
         <% end %>
       </tr>
   <% end %>
