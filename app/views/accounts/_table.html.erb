@@ -13,8 +13,8 @@
 
   <tbody>
   <% accounts.each do |account| %>
-      <tr <%= 'class="danger"' if account.balance < 0 %> >
-        <td><%= account.rib %></td>
+      <tr <%= 'class=danger' if account.balance < 0 %> >
+        <td><%= account.number %></td>
         <td><%= account.balance%></td>
         <td><%= account.status %></td>
         <td><%= link_to 'Details', account %></td>

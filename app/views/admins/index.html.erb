@@ -1,10 +1,14 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4 col-md-offset-1">
     <%= render 'transactions/table', transactions: @recent_transactions, admin: true %>
   </div>
   <div class="col-md-4">
-    <%= render 'accounts/table', accounts: @recent_accounts, admin: true %>  </div>
-  <div class="col-md-4">
-    <%= render 'table', model: @recent_users %>
+    <div class="col-md-10">
+      <%= render 'accounts/table', accounts: @recent_accounts, admin: true %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    #todo: make user printing
+
   </div>
 </div>

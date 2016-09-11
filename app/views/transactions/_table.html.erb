@@ -1,5 +1,5 @@
 <% admin_view = local_assigns[:admin]||false  %>
-<% end_cols   = admin_view == true ? 3 : 2 %>
+<% end_cols   = admin_view == true ? 2 : 1 %>
 <% transactions = local_assigns[:transactions]||@transactions %>
 <table class="table table-striped table-responsive">
   <thead>
@@ -7,8 +7,10 @@
     <th>Compte</th>
     <th>Montant</th>
     <th>Type</th>
-    <th>Date de la dernière action</th>
-    <%= '<th>Admin</th>' if admin_view %>
+    <th>Dernière action</th>
+    <% if admin_view %>
+        <th>Admin</th>
+    <% end %>
     <th>Status</th>
     <th colspan="<%= end_cols %>"></th>
   </tr>
@@ -17,15 +19,16 @@
   <tbody>
   <% transactions.each do |transaction| %>
       <tr <%= 'class="danger"' if transaction.transaction_type=='credit' %> >
-        <td><%= transaction.account.rib %></td>
+        <td>
+          <%= admin_view ? transaction.account.number : transaction.account.rib %>
+        </td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.transaction_type %></td>
-        <td><%= transaction.managed_at %></td>
-        <% if admin_view and !transaction.admin.nil? %>
-        <td><%= transaction.admin.username %></td>
+        <td><%= transaction.managed_at.strftime("%m/%d %H:%M") unless transaction.managed_at.nil? %></td>
+        <% if admin_view  %>
+        <td><%= transaction.admin.username if !transaction.admin.nil? %></td>
         <% end %>
-        <td><%= transaction.status %></td>
-        <td><%= link_to 'Show', transaction %></td>
+        <td><%= image_tag ApplicationHelper::STATE_MAP[transaction.status], class: 'icon' %></td>
         <% if admin_view and transaction.waiting? %>
             <td><%= link_to '✔', transactions_accept_url(id: transaction.id),
                              method: :post %></td>

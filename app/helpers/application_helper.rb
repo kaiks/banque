@@ -6,6 +6,17 @@ module ApplicationHelper
       notice: 'alert-info'
   }
 
+  STATE_MAP = {
+      'waiting' => 'wait.png',
+      'active' => 'ok.png',
+      'accepted' => 'yes.png',
+      'refused' => 'no.png'
+  }
+
+  COLORS = %w(
+      #1A98FF #0582CA #006494 #003554 #051923
+)
+
   def bootstrap_class_for(flash_type)
     BOOTSTRAP_FLASH_MSG.fetch(flash_type.to_sym, flash_type.to_s)
   end
@@ -20,4 +31,5 @@ module ApplicationHelper
     end
     nil
   end
+
 end
