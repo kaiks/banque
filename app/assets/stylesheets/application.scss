@@ -36,6 +36,11 @@ img {
   cursor:pointer;
 }
 
+@media screen and (max-width: 800px) {
+  div[class*="col-sm"]:not(:first-child) { padding-left:7px; }
+  div[class*="col-sm"]:not(:last-child) { padding-right:7px; }
+}
+
 @media print{
     body {
       background: #FFF;
@@ -44,3 +49,4 @@ img {
       display: none;
     }
 }
+

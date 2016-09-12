@@ -1,6 +1,8 @@
 #todo: figure out a primary key
 #todo: check date format and do validation if necessary
 class User < ActiveRecord::Base
+  has_secure_password
+
   has_many :accounts
   has_many :transactions, through: :accounts
 
@@ -28,7 +30,7 @@ class User < ActiveRecord::Base
 
   validates :password, format: {
       with: /\A[[:alnum:]\-\s]{6,100}\z/,
-      message: "Le nom de passe n'est pas vailde."
+      message: "Le mot de passe n'est pas vailde."
   }
 
   validates :country_code, length: { is: 2 }
@@ -47,7 +49,7 @@ class User < ActiveRecord::Base
 
   def self.authenticates?(id, password)
     begin
-      User.where('password = ?', password).find(id)
+      User.find_by_id(id).authenticate(password)
     rescue ActiveRecord::RecordNotFound
       return nil
     end

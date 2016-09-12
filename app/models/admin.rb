@@ -1,4 +1,5 @@
 class Admin < ActiveRecord::Base
+  has_secure_password
   has_many :transactions
   validates :username, format: {
       with: /\A[[:alpha:]]+\z/,
@@ -21,7 +22,7 @@ class Admin < ActiveRecord::Base
 
   def self.authenticates?(username, password)
     begin
-      Admin.where(username: username).where(password: password).first
+      Admin.find_by_username(username).authenticate(password)
     rescue ActiveRecord::RecordNotFound
       return nil
     end
