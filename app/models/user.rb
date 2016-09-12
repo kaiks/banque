@@ -49,7 +49,9 @@ class User < ActiveRecord::Base
 
   def self.authenticates?(id, password)
     begin
-      User.find_by_id(id).authenticate(password)
+      user = User.find_by_id(id)
+      return nil unless user
+      user.authenticate(password)
     rescue ActiveRecord::RecordNotFound
       return nil
     end

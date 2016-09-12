@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :attempt_login, :index
+  before_action :attempt_login, only: :index
   before_action :ensure_user_authenticated, only: :dashboard
 
   def index
@@ -11,7 +11,6 @@ class HomeController < ApplicationController
     @positive_accounts = @accounts.where('balance > 0')
     @total_cash = @accounts.sum(:balance)
     @recent_transactions = @current_user.transactions.last(5)
-
   end
 
   def attempt_login

@@ -25,8 +25,9 @@ class TransactionsController < ApplicationController
   end
 
   # GET /transactions/1/edit
-  #def edit
-  #end
+  def edit
+    show
+  end
 
   #todo
   def waiting
@@ -97,7 +98,8 @@ class TransactionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+      @transaction = Transaction.find_by_id(params[:id])
+      redirect_to transactions_url, flash: {error: 'Transaction n\'existe pas'} unless @transaction
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

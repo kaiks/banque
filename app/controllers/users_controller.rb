@@ -76,7 +76,8 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     if admin_logged_in?
-      @user = User.find(params[:id]) || @current_user
+      @user = User.find_by_id(params[:id]) || @current_user
+      redirect_to(users_url, flash: {error: 'Utilisateur n\'existe pas'}) unless @user
     else
       @user = @current_user
     end

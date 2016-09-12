@@ -5,15 +5,15 @@ class ApplicationController < ActionController::Base
 
   protected
   def ensure_user_or_admin_authenticated(return_to = root_url)
-    redirect_to return_to unless (login_success? || admin_logged_in?)
+    authentication_failure return_to unless (login_success? || admin_logged_in?)
   end
 
   def ensure_user_authenticated(return_to = root_url)
-    redirect_to return_to, alert: 'Authentification requise, veuillez vous connecter' unless login_success?
+    authentication_failure return_to unless login_success?
   end
 
   def ensure_admin_authenticated(return_to = root_url)
-    redirect_to return_to, alert :'Authentification requise, veuillez vous connecter' unless admin_logged_in?
+    authentication_failure return_to unless admin_logged_in?
   end
 
   def login_success?
@@ -23,6 +23,12 @@ class ApplicationController < ActionController::Base
     else
       false
     end
+  end
+
+  def authentication_failure(return_to = nil)
+    return_to ||= request.referer || root_url
+    redirect_to(return_to,
+                  alert: 'Authentification requise, veuillez vous connecter')
   end
 
   def admin_logged_in?
