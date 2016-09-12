@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction  = Transaction.new
-    @accounts     = @current_user.accounts
+    @accounts     = Account.all
     puts "accounts: #{@accounts.map{|a|a.rib}.join(' ')}"
   end
 

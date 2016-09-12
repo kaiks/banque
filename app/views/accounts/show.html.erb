@@ -1,20 +1,28 @@
 <div class="col-md-6 col-md-offset-3">
-  <p>
-    <strong>RIB:</strong>
-    <%= @account.rib %>
-    <%= link_to 'Imprimer', print_rib_account_path %>
-  </p>
+  <%= link_to 'Imprimer RIB', print_rib_account_path %>
+  <table>
+  <tbody>
+  <tr>
+    <td class="col-md-6">Propriétaire: </td>
+    <td><%= @account.user.full_name %></td>
+  </tr>
+  <tr>
+    <td class="col-md-6">RIB: </td>
+    <td><%= @account.rib %></td>
+  </tr>
 
-  <p>
-    <strong>status:</strong>
-    <%= @account.status %>
-  </p>
+  <tr>
+    <td class="col-md-6">status: </td>
+    <td><%= @account.status %></td>
+  </tr>
 
-  <p>
-    <strong>Balance:</strong>
-    <%= @account.balance %>
-  </p>
-  <h3>Transactions:</h3>
+  <tr>
+    <td class="col-md-6">Balance: </td>
+    <td><%= @account.balance %></td>
+  </tr>
+    </tbody>
+  </table>
+  <h3>Transactions: </h3>
   <%= render 'transactions/table', transactions: @account.transactions %>
   <%= paginate @transactions, :theme => 'twitter-bootstrap-3' %>
   <%= link_to 'Back', accounts_path %>

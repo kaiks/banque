@@ -10,6 +10,10 @@ class AccountsController < ApplicationController
     @accounts = @current_user.accounts.order(id: :desc).page(params[:page]).per(10)
   end
 
+  def recent
+    @accounts = Account.order(id: :desc).page(params[:page]).per(10)
+  end
+
   # GET /accounts/1
   # GET /accounts/1.json
   def show
@@ -59,6 +63,7 @@ class AccountsController < ApplicationController
   # DELETE /accounts/1
   # DELETE /accounts/1.json
   def destroy
+    redirect_to account_url(@account), alert: 'On ne peut pas supprimer ce compte' unless @account.deletable?
     @account.destroy
     respond_to do |format|
       format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }

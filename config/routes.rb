@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       post 'activate'
       post 'close'
     end
+    collection do
+      get 'recent'
+    end
   end
 
   get 'home/index'

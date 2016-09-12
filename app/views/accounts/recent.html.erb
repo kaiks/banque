@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div class="col-md-6 col-md-offset-3">
-  <h1>Vos comptes</h1>
-  <%= link_to 'Ouvrir un compte', new_account_path %>
+  <h1>Dernières comptes</h1>
   <%= render 'table' %>
   <%= paginate @accounts, :theme => 'twitter-bootstrap-3' %>
   <br>
 </div>
-
