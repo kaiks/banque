@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
+        format.html { redirect_to @account, notice: 'Compte à été créé.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to @account, notice: 'Compte mis à jour.' }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
     redirect_to account_url(@account), alert: 'On ne peut pas supprimer ce compte' unless @account.deletable?
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'Compte detruit.' }
       format.json { head :no_content }
     end
   end
@@ -76,7 +76,7 @@ class AccountsController < ApplicationController
     a = Account.find(id)
     a.active!
 
-    redirect_to request.referer, notice: 'Account activated'
+    redirect_to request.referer, notice: 'Compte activé'
   end
 
   def close
@@ -84,7 +84,7 @@ class AccountsController < ApplicationController
     a = Account.find(id)
     a.closed!
 
-    redirect_to request.referer, notice: 'Account closed'
+    redirect_to request.referer, notice: 'Compte fermé'
   end
 
   def print_rib

@@ -16,19 +16,4 @@ class AdminsController < ApplicationController
   def login
     @admin = Admin.new
   end
-
-  def edit_transactions
-  end
-
-  def edit_accounts
-  end
-
-  def edit_user
-  end
-
-  def edit_user_transactions
-  end
-
-  def edit_user_accounts
-  end
 end

@@ -49,5 +49,5 @@
   <h3>Transactions: </h3>
   <%= render 'transactions/table', transactions: @account.transactions %>
   <%= paginate @transactions, :theme => 'twitter-bootstrap-3' %>
-  <%= link_to 'Back', accounts_path %>
+  <%= link_to 'Retourner', accounts_path, class: 'btn btn-default' %>
 </div>

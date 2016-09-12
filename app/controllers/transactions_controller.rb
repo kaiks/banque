@@ -39,7 +39,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to @transaction, notice: 'Transaction a été créée.' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to @transaction, notice: 'Transaction a été mise à jour.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
+      format.html { redirect_to transactions_url, notice: 'Transaction à été supprimée.' }
       format.json { head :no_content }
     end
   end
@@ -79,7 +79,7 @@ class TransactionsController < ApplicationController
     t.managed_at = DateTime.now
     t.accepted!
 
-    redirect_to request.referer, notice: 'Transaction accepted'
+    redirect_to request.referer, notice: 'Transaction accepteé'
   end
 
   def refuse
@@ -89,7 +89,7 @@ class TransactionsController < ApplicationController
     t.managed_at = DateTime.now
     t.refused!
 
-    redirect_to request.referer, notice: 'Transaction rejected'
+    redirect_to request.referer, notice: 'Transaction refusée'
   end
 
   private

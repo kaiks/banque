@@ -1,8 +1,7 @@
 <%= bootstrap_form_tag url: sessions_new_url, method: :post do |f| %>
   <% if @current_user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@current_user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+      <h2><%= pluralize(@current_user.errors.count, "error") %> erreurs:</h2>
       <ul>
       <% @current_user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -15,15 +14,15 @@
       <%= f.text_field :id %>
     </div>
   <div class="field">
-    <%= f.password_field :password %>
+    <%= f.password_field :password, label: 'Mot de passe' %>
   </div>
   <div class="actions row">
     <div class="col-md-5 col-sm-6 col-xs-6">
-    <%= f.submit 'Login', class: "btn btn-primary btn-block" %>
+    <%= f.submit 'Connecter', class: "btn btn-primary btn-block" %>
     </div>
     <div class="col-md-2 col-sm-1 col-xs-1"></div>
     <div class="col-md-5 col-sm-6 col-xs-6 text-right">
-      <%= link_to 'Register', new_user_path, class: "btn btn-success btn-block" %>
+      <%= link_to 'S\'enregistrer', new_user_path, class: "btn btn-success btn-block" %>
     </div>
   </div>
 <% end %>
