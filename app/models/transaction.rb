@@ -17,8 +17,8 @@ class Transaction < ActiveRecord::Base
     transaction.validates :managed_at, presence: true
   end
 
-  #before_save :change_validation, if: :changed?
   validate :change_validation, if: :changed?
+  validate :account_state_validation
 
   def rounded?
     (100*amount).floor == amount*100
@@ -41,6 +41,15 @@ class Transaction < ActiveRecord::Base
       else
         errors.add :base, 'On ne peut pas changer la transaction après qu\'elle soit sauvegardée'
       end
+    end
+  end
+
+  def account_state_validation
+    return if account.nil?
+    if account.closed?
+      errors.add :base, 'Operation impossible pour un compte fermé'
+    elsif account.waiting? and accepted?
+      errors.add :base, 'Transaction ne peut pas être acceptée pour un compte en attente'
     end
   end
 

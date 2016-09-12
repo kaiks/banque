@@ -33,12 +33,15 @@ RSpec.describe Transaction, type: :model do
     expect(transaction).to be_invalid
   end
 
-  it "can't have date without administrator" do
+  it "cannot have date without administrator" do
     transaction.managed_at = DateTime.now
     expect(transaction).to be_invalid
   end
 
-
+  it 'cannot be saved with a closed account' do
+    transaction.account = create :closed_account
+    expect{accepted_transaction.save}.to raise_error
+  end
 
   context 'when not waiting' do
     let(:accepted_transaction)     { build :accepted_transaction }
@@ -74,6 +77,11 @@ RSpec.describe Transaction, type: :model do
         accepted_transaction.save!
         expect{accepted_transaction.refused!}.to raise_error
         expect{accepted_transaction.waiting!}.to raise_error
+      end
+
+      it 'cannot be saved with a waiting account' do
+        accepted_transaction.account = create :closed_account
+        expect{accepted_transaction.save!}.to raise_error
       end
     end
 

@@ -24,32 +24,32 @@ class Account < ActiveRecord::Base
     status == 'waiting' && transactions.count == 0
   end
 
+
+  def self.generate_number
+    /\A[A-Z0-9]{11}\z/.random_example
+  end
   private
 
   def set_defaults
-    self.rib_key   ||= default_rib_key
-    self.bank_code ||= default_bank_code
-    self.sort_code ||= default_sort_code
-    self.number    ||= default_account_number
+    self.rib_key   ||= self.class.default_rib_key
+    self.bank_code ||= self.class.default_bank_code
+    self.sort_code ||= self.class.default_sort_code
+    self.number    ||= self.class.default_account_number
   end
 
-  def default_rib_key
+  def self.default_rib_key
     33
   end
 
-  def default_bank_code
+  def self.default_bank_code
     22222
   end
 
-  def default_sort_code
+  def self.default_sort_code
     11111
   end
 
-  def default_account_number
+  def self.default_account_number
     generate_number
-  end
-
-  def generate_number
-    /\A[A-Z0-9]{11}\z/.random_example
   end
 end

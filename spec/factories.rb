@@ -23,7 +23,14 @@ FactoryGirl.define do
     bank_code 1
     sort_code 678
     rib_key   44
-    number 'A1B2C3D4E50'
+    number { Account.generate_number }
+    factory :closed_account do
+      status :closed
+    end
+
+    factory :active_account do
+      status :active
+    end
   end
 
   factory :admin do
@@ -33,7 +40,7 @@ FactoryGirl.define do
   end
 
   factory :transaction do
-    account
+    association :account, factory: :active_account
     amount 100
 
     factory :accepted_transaction do

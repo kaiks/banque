@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.collection_select :account_id, @accounts, :id, :rib, prompt: 'Choisissez compte' %>
+    <%= f.collection_select :account_id, @accounts.active, :id, :rib, prompt: 'Choisissez compte' %>
   </div>
   <div class="field">
     <%= f.collection_select :transaction_type, Transaction.transaction_types, :first, :first, prompt: 'Choisissez type' %>

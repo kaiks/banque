@@ -20,7 +20,6 @@ class TransactionsController < ApplicationController
   def new
     @transaction  = Transaction.new
     @accounts     = Account.all
-    puts "accounts: #{@accounts.map{|a|a.rib}.join(' ')}"
   end
 
   # GET /transactions/1/edit
