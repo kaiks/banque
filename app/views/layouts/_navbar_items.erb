@@ -9,10 +9,10 @@
     <li class="<%= 'active' if current_page?(controller: 'users') %>">
       <%= link_to User.find(uid).name_with_title, user_path(uid)%>
     </li>
-
-    <li> <%= link_to('Log out', logout_path) %> </li>
+    <li> <%= link_to('Déconnecter', logout_path) %> </li>
 <% end %>
 <% if session[:admin_id] %>
+    <li class="divider-vertical"></li>
     <li class="<%= 'active' if current_page?(admins_index_path) %>">
       <%= link_to 'Admin dashboard', admins_index_path %>
     </li>
@@ -22,7 +22,7 @@
     <li class="<%= 'active' if current_page?(controller: 'users') %>">
       <%= link_to 'Utilisateurs', users_path %>
     </li>
-    <li> <%= link_to('Admin log out', admin_logout_path) %> </li>
+    <li> <%= link_to('Déconnecter (administrateur)', admin_logout_path) %> </li>
 <% elsif !session[:user_id] %>
     <li class="active">
       <%= link_to 'Home', root_path %>
