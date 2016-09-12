@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    redirect_to user_path unless admin_logged_in? or session[:user_id] == @user.id
+    redirect_to user_path unless (admin_logged_in? || session[:user_id] == @user.id)
   end
 
   # GET /users/new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    redirect_to user_path unless admin_logged_in? or session[:user_id] == @user.id
+    redirect_to user_path unless (admin_logged_in? || session[:user_id] == @user.id)
   end
 
   # POST /users

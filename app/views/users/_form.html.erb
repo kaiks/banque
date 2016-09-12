@@ -12,33 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.select :title, options_for_select(User.titles.map{|t| t[0] }) %>
+    <%= f.select :title, options_for_select(User.titles.map{|t| t[0] }), label: 'Civlité'  %>
   </div>
   <div class="field">
-    <%= f.text_field :name, maxlength: 15 %>
+    <%= f.text_field :name, maxlength: 15, label: 'Prénom'  %>
   </div>
   <div class="field">
-    <%= f.text_field :surname %>
+    <%= f.text_field :surname, label: 'Nom' %>
   </div>
   <div class="field">
-    <%= f.date_field :birth_date, placeholder: 'YYYY-MM-DD' %>
+    <%= f.date_field :birth_date, placeholder: 'YYYY-MM-DD', label: 'Date de naissance'  %>
   </div>
   <div class="field">
-    <%= f.text_field :city %>
+    <%= f.text_field :city, label: 'Ville'  %>
   </div>
   <div class="field">
-    <%= f.collection_select :income_bracket_id, IncomeBracket.all, :id, :to_s, prompt: 'Choisissez revenu' %>
+    <%= f.collection_select :income_bracket_id, IncomeBracket.all,
+                            :id, :to_s, prompt: 'Choisissez revenu', label: 'Revenu'  %>
   </div>
   <div class="field">
-    <%= f.password_field :password %>
+    <%= f.password_field :password, label: 'Mot de passe' %>
   </div>
   <div class="actions row">
     <div class="col-md-5">
-    <%= f.submit 'Create user', class: "btn btn-primary btn-block" %>
+    <%= f.submit 'Ok', class: "btn btn-primary btn-block" %>
     </div>
     <div class="col-md-2"></div>
     <div class="col-md-5 text-right">
-      <%= link_to 'Back', "history.back()", class: "btn btn-warning btn-block" %></p>
+      <%= link_to 'Annuler', "history.back()", class: "btn btn-warning btn-block" %></p>
     </div>
   </div>
 <% end %>

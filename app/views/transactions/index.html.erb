@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <div class="col-md-6 col-md-offset-3">
-  <h1>Listing Transactions</h1>
-
-  <%= link_to 'New Transaction', new_transaction_path if session[:admin_id]%>
+  <h1>Liste de transactions</h1>
+  <div class="mini-margin-bar"></div>
+  <%= link_to 'Nouvelle transaction', new_transaction_path if session[:admin_id]%>
+  <div class="mini-margin-bar"></div>
 
   <%= render 'table' %>
   <%= paginate @transactions, :theme => 'twitter-bootstrap-3' %>

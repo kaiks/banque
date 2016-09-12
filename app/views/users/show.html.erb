@@ -1,36 +1,39 @@
+<p id="notice"><%= notice %></p>
 <div class="col-md-4 col-md-offset-4">
-  <p id="notice"><%= notice %></p>
+    <h3><%= @user.name_with_title %></h3>
+    <div class="mini-margin-bar"></div>
+    <table class="table">
+      <tbody>
+      <tr>
+        <td>Civilité : </td>
+        <td><%= @user. title%></td>
+      </tr>
+      <tr>
+        <td>Nom : </td>
+        <td><%= @user.surname %></td>
+      </tr>
 
-  <p>
-    <strong>Title:</strong>
-    <%= @user.title %>
-  </p>
+      <tr>
+        <td>Prénom : </td>
+        <td><%= @user.name%></td>
+      </tr>
 
-  <p>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </p>
+      <tr>
+        <td>Date de naissance : </td>
+        <td><%= @user.birth_date%></td>
+      </tr>
 
-  <p>
-    <strong>Surname:</strong>
-    <%= @user.surname %>
-  </p>
+      <tr>
+        <td>Ville : </td>
+        <td><%= @user.city %></td>
+      </tr>
+      <tr>
+        <td>Revenu : </td>
+        <td><%= @user.income_bracket %></td>
+      </tr>
 
-  <p>
-    <strong>Birth date:</strong>
-    <%= @user.birth_date %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= @user.city %>
-  </p>
-
-  <p>
-    <strong>Income bracket:</strong>
-    <%= @user.income_bracket %>
-  </p>
-
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-  <%= link_to 'Back', users_path %>
+      </tbody>
+    </table>
+  <%= link_to 'Changer', edit_user_path(@user) %> |
+  <%= link_to 'Retourner', users_path %>
 </div>
