@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
   before_action :ensure_admin_authenticated,
                 only: [:edit, :update, :destroy, :waiting, :accept, :reject,
                        :new, :create, :index]
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :set_transaction, only: [:show, :update, :destroy]
 
   # GET /transactions
   # GET /transactions.json
@@ -23,8 +23,8 @@ class TransactionsController < ApplicationController
   end
 
   # GET /transactions/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   #todo
   def waiting

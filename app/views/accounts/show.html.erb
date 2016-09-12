@@ -1,27 +1,51 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 col-md-offset-3 row">
+  <h3>Compte</h3>
+  <div class="mini-margin-bar"></div>
   <%= link_to 'Imprimer RIB', print_rib_account_path %>
-  <table>
+  <div class="mini-margin-bar"></div>
+  <table class="table">
   <tbody>
   <tr>
-    <td class="col-md-6">Propriétaire: </td>
+    <td>Propriétaire: </td>
     <td><%= @account.user.full_name %></td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
-    <td class="col-md-6">RIB: </td>
+    <td>RIB: </td>
     <td><%= @account.rib %></td>
+    <td></td>
+    <td></td>
   </tr>
 
   <tr>
-    <td class="col-md-6">status: </td>
+    <td>status: </td>
     <td><%= @account.status %></td>
+    <td></td>
+    <td></td>
   </tr>
 
   <tr>
-    <td class="col-md-6">Balance: </td>
+    <td>Balance: </td>
     <td><%= @account.balance %></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Status: </td>
+    <td><%= @account.status %></td>
+    <td>
+      <%= link_to 'Activer',
+                  activate_account_path(@account) if session[:admin_id] and !@account.active? %>
+    </td>
+    <td>
+      <%= link_to 'Fermer',
+                  close_account_path(@account) if session[:admin_id] and !@account.closed? %>
+    </td>
   </tr>
     </tbody>
   </table>
+  <div class="mini-margin-bar"></div>
   <h3>Transactions: </h3>
   <%= render 'transactions/table', transactions: @account.transactions %>
   <%= paginate @transactions, :theme => 'twitter-bootstrap-3' %>

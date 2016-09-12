@@ -1,25 +1,43 @@
 <p id="notice"><%= notice %></p>
+<div class="col-md-6 col-md-offset-3 row">
+  <h3>Transaction ID:<%= @transaction.id %></h3>
+  <div class="mini-margin-bar"></div>
+  <table class="table">
+    <tbody>
+    <tr>
+      <td>Compte:</td>
+      <td><%= link_to @transaction.account.rib, @transaction.account %></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Type:</td>
+      <td><%= @transaction.transaction_type %></td>
+      <td></td>
+      <td></td>
+    </tr>
 
-<p>
-  <strong>Account:</strong>
-  <%= @transaction.account_id %>
-</p>
+    <tr>
+      <td>Montant:</td>
+      <td><%= @transaction.amount %></td>
+      <td></td>
+      <td></td>
+    </tr>
 
-<p>
-  <strong>Type:</strong>
-  <%= @transaction.transaction_type %>
-</p>
+    <tr>
+      <td>Status:</td>
+      <td><%= @transaction.status %></td>
+      <td>
+        <%= link_to 'Accepter',
+                    accept_transaction_path(@transaction) if session[:admin_id] and @transaction.waiting? %>
+      </td>
+      <td>
+        <%= link_to 'Refuser',
+                    refuse_transaction_path(@transaction) if session[:admin_id] and @transaction.waiting? %>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @transaction.amount %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @transaction.status %>
-</p>
-
-
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
+  <%= link_to 'Back', transactions_path %>
+</div>

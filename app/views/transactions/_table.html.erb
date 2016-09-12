@@ -27,14 +27,18 @@
         <td><%= transaction.transaction_type %></td>
         <td><%= transaction.managed_at.strftime("%m/%d %H:%M") unless transaction.managed_at.nil? %></td>
         <% if admin_view  %>
-        <td><%= transaction.admin.username if !transaction.admin.nil? %></td>
+            <td><%= transaction.admin.username if !transaction.admin.nil? %></td>
         <% end %>
         <td><%= image_tag ApplicationHelper::STATE_MAP[transaction.status], class: 'icon' %></td>
-        <% if admin_view and transaction.waiting? %>
-            <td><%= link_to '✔', accept_transaction_url(id: transaction.id),
-                             method: :post %></td>
-            <td><%= link_to '✖', refuse_transaction_url(id: transaction.id),
-                            data: { confirm: 'Are you sure?', method: :post } %></td>
+        <% if admin_view %>
+            <td>
+              <%= link_to '✔', accept_transaction_url(id: transaction.id),
+                             method: :post if transaction.waiting? %>
+            </td>
+            <td>
+              <%= link_to '✖', refuse_transaction_url(id: transaction.id),
+                            data: { confirm: 'Are you sure?', method: :post } if transaction.waiting? %>
+            </td>
         <% end %>
       </tr>
   <% end %>

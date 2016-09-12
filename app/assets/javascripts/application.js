@@ -11,12 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
 //= require Chart.bundle
 //= require chartkick
 //= require bootstrap
-//= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//#= require_tree .
 
 
 function printpage()
@@ -24,7 +25,7 @@ function printpage()
     window.print()
 }
 
-jQuery(function($) {
+$(document).on('turbolinks:load', function() {
 
     $("tr[data-link]").click(function() {
         window.location = $(this).data('link');
