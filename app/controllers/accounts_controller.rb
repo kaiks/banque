@@ -1,8 +1,10 @@
 class AccountsController < ApplicationController
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :print_rib]
+
   before_action :ensure_user_or_admin_authenticated, only: [:new, :show, :index, :destroy, :print_rib]
+  before_action :ensure_correct_user, only: [:show, :destroy, :print_rib]
   before_action :ensure_admin_authenticated,
                 only: [:edit, :update, :destroy, :activate, :close]
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
   # GET /accounts.json
@@ -89,11 +91,7 @@ class AccountsController < ApplicationController
 
   def print_rib
     @account = Account.find(params[:id])
-    if @account.user == @current_user
-      @rib = @account.rib
-    else
-      redirect_to accounts_url, alert: 'Mauvais id du compte'
-    end
+    @rib = @account.rib
   end
 
   private
@@ -110,5 +108,11 @@ class AccountsController < ApplicationController
     # Only allow for status changes.
   def account_admin_params
     params.require(:account).permit(:status)
+  end
+
+  def ensure_correct_user
+    sid = session[:user_id] || -1
+    return if session[:admin_id] || sid == @account.user.id
+    redirect_to request.referer, alert: 'Opération ne peut pas être effectuée pour cet utilisateur.'
   end
 end

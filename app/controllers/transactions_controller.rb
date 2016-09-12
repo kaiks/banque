@@ -1,9 +1,11 @@
 class TransactionsController < ApplicationController
+  before_action :set_transaction, only: [:show, :update, :destroy]
+
   before_action :ensure_user_or_admin_authenticated, only: [:show]
   before_action :ensure_admin_authenticated,
                 only: [:edit, :update, :destroy, :waiting, :accept, :reject,
-                       :new, :create, :index]
-  before_action :set_transaction, only: [:show, :update, :destroy]
+            :new, :create, :index]
+  before_action :ensure_correct_user, only: [:show]
 
   # GET /transactions
   # GET /transactions.json
@@ -106,4 +108,10 @@ class TransactionsController < ApplicationController
     def transaction_admin_params
       params.require(:transaction).permit(:account_id, :amount, :transaction_type, :status, :managed_by)
     end
+
+  def ensure_correct_user
+    sid = session[:user_id] || -1
+    return if session[:admin_id] || sid == @transaction.user.id
+    redirect_to request.referer, alert: 'Opération ne peut pas être effectuée pour cet utilisateur.'
+  end
 end

@@ -23,7 +23,7 @@
         <td>
           <%= admin_view ? transaction.account.number : transaction.account.rib %>
         </td>
-        <td><%= transaction.amount %></td>
+        <td><%= number_to_currency(transaction.amount) %></td>
         <td><%= transaction.transaction_type %></td>
         <td><%= transaction.managed_at.strftime("%m/%d %H:%M") unless transaction.managed_at.nil? %></td>
         <% if admin_view  %>

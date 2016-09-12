@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   before_action :ensure_user_or_admin_authenticated, only: [:show, :edit, :update, :new, :create]
   before_action :ensure_admin_authenticated,
                 only: [:index, :destroy, :waiting, :accept, :reject]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:show, :edit, :update]
 
   # GET /users
   # GET /users.json
@@ -13,7 +15,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    redirect_to user_path unless (admin_logged_in? || session[:user_id] == @user.id)
   end
 
   # GET /users/new
@@ -50,8 +51,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    redirect_to user_path unless admin_logged_in? or session[:user_id] == @user.id
-
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'Compte d\'utilisateur a été mis à jour.' }
@@ -81,6 +80,14 @@ class UsersController < ApplicationController
     else
       @user = @current_user
     end
+  end
+
+  def ensure_correct_user(failure_redirect = nil)
+    sid = session[:user_id] || -1
+    return if session[:admin_id] || sid == @user.id
+
+    failure_redirect_link ||= request.referer
+    redirect_to failure_redirect_link, alert: 'Opération ne peut pas être effectuée pour cet utilisateur.'
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -28,6 +28,10 @@ class Transaction < ActiveRecord::Base
     transaction_type == 'debit' ? amount : -amount
   end
 
+  def user
+    account.user
+  end
+
 
   private
   def must_be_rounded

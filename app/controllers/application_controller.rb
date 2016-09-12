@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_user_authenticated(return_to = root_url)
-    redirect_to return_to unless login_success?
+    redirect_to return_to, alert: 'Authentification requise, veuillez vous connecter' unless login_success?
   end
 
   def ensure_admin_authenticated(return_to = root_url)
-    redirect_to return_to unless admin_logged_in?
+    redirect_to return_to, alert :'Authentification requise, veuillez vous connecter' unless admin_logged_in?
   end
 
   def login_success?

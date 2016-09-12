@@ -16,7 +16,7 @@
       <tr data-link="<%= account_path(account) %>"
           class="<%= 'clickable' << (account.balance < 0 ? ' danger':'') %>">
         <td><%= account.number %></td>
-        <td><%= account.balance%></td>
+        <td><%= number_to_currency(account.balance) %></td>
         <td><%= image_tag ApplicationHelper::STATE_MAP[account.status], class: 'icon' %></td>
         <% if admin_view %>
             <td>

@@ -6,7 +6,7 @@
     %>
     <%= render 'accounts/table' %>
   <div>
-    Solde total: <%= @current_user.accounts.sum(:balance) %>
+    Solde total: <%= number_to_currency(@current_user.accounts.sum(:balance)) %>
   </div>
   </div>
 
