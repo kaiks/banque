@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    redirect_to user_path unless admin_logged_in? or session[:user_id] == @user.id
   end
 
   # GET /users/new
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    redirect_to user_path unless admin_logged_in? or session[:user_id] == @user.id
   end
 
   # POST /users
@@ -48,6 +50,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    redirect_to user_path unless admin_logged_in? or session[:user_id] == @user.id
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
