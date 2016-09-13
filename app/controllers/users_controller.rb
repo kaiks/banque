@@ -79,7 +79,7 @@ class UsersController < ApplicationController
       @user = User.find_by_id(params[:id]) || @current_user
       redirect_to(users_url, flash: {error: 'Utilisateur n\'existe pas'}) unless @user
     else
-      @user = @current_user
+      @user = User.find_by_id(session[:user_id]) || @current_user
     end
   end
 

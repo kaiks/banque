@@ -1,5 +1,5 @@
-<div class="col-md-4 col-md-offset-4">
-  <h1>login</h1>
+<div class="col-lg-2 col-lg-offset-5 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+  <h1>Connexion</h1>
   <%= bootstrap_form_for(@admin) do |f| %>
       <% if @admin.errors.any? %>
           <div id="error_explanation">
@@ -21,7 +21,7 @@
       </div>
       <div class="actions row">
         <div class="col-md-5">
-          <%= f.submit 'Log in', class: "btn btn-default btn-block" %>
+          <%= f.submit 'Connexion', class: "btn btn-default btn-block" %>
         </div>
       </div>
   <% end %>

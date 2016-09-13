@@ -23,7 +23,7 @@ class Admin < ActiveRecord::Base
   def self.authenticates?(username, password)
     begin
       Admin.find_by_username(username).authenticate(password)
-    rescue ActiveRecord::RecordNotFound
+    rescue NoMethodError
       return nil
     end
   end

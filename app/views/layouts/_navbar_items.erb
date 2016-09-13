@@ -6,7 +6,7 @@
   <li class="<%= 'active' if current_page?(controller: 'accounts') %>">
     <%= link_to 'Mes comptes', accounts_path%>
   </li>
-    <li class="<%= 'active' if current_page?(controller: 'users') %>">
+    <li class="<%= 'active' if current_page?(controller: 'users') && !session[:admin_id] %>">
       <%= link_to User.find(uid).name_with_title, user_path(uid)%>
     </li>
     <li> <%= link_to('Déconnecter', logout_path) %> </li>
